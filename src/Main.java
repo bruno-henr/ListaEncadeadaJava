@@ -5,6 +5,7 @@ public class Main {
         lista.add("teste 2");
         lista.add("teste 3");
         System.out.println(lista.toString());
-
+        lista.remove(1);
+        System.out.println(lista.toString());
     }
 }
