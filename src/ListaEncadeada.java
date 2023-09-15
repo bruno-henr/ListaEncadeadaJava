@@ -15,16 +15,21 @@ public class ListaEncadeada<T> {
             this.refEntrada = novoNo;
             return;
         }
+
         No<T> noAux = refEntrada;
+
         for (int i = 0; i < this.size()-1; i++) {
             noAux = noAux.getProxNo();
         }
+
         noAux.setProxNo(novoNo);
+
     }
 
     private void validaIndice(int index) {
-        if(index >= this.size()) {
-            throw new IndexOutOfBoundsException("Indice nao existente");
+        if(index >= size()){
+            int ultimoIndice = size()-1;
+            throw new IndexOutOfBoundsException("Não existe conteúdo no índice " + index + " desta lista. Esta lista só vai até o índice " + ultimoIndice + '.');
         }
     }
 
@@ -32,8 +37,9 @@ public class ListaEncadeada<T> {
     public String toString() {
         String s = "";
         No<T> aux = refEntrada;
+
         for(int i = 0; i < this.size(); i++) {
-            s += " [No{conteudo ="+aux.getConteudo() + "}] -->";
+            s += "[No{conteudo=" + aux.getConteudo() +"}]--->";
             aux = aux.getProxNo();
         }
         s += " null";
@@ -54,12 +60,14 @@ public class ListaEncadeada<T> {
     public T get(int index) {
         return getNo(index).getConteudo();
     }
+
+
     private No<T> getNo(int index) {
         validaIndice(index);
 
         No<T> aux = this.refEntrada;
         No<T> noRetorno = null;
-        for(int i = 0; i < this.size()-1; i++) {
+        for(int i = 0; i <= index; i++) {
             noRetorno = aux;
             aux = aux.getProxNo();
         }
@@ -73,9 +81,9 @@ public class ListaEncadeada<T> {
         No<T> refAux = this.refEntrada;
         while (true) {
             if(this.refEntrada != null) {
-                tamLista += 1;
-                if(this.refEntrada.getProxNo() != null) {
-                    this.refEntrada = refAux.getProxNo();
+                tamLista++ ;
+                if(refAux.getProxNo() != null) {
+                    refAux = refAux.getProxNo();
                 } else {
                     break;
                 }
