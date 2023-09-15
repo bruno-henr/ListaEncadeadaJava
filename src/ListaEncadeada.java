@@ -28,6 +28,18 @@ public class ListaEncadeada<T> {
         }
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        No<T> aux = refEntrada;
+        for(int i = 0; i < this.size(); i++) {
+            s += " [No{conteudo ="+aux.getConteudo() + "}] -->";
+            aux = aux.getProxNo();
+        }
+        s += " null";
+        return s;
+    }
+
     public T remove(int index) {
         No<T> noPivo = this.getNo(index);
         if(index == 0) {
